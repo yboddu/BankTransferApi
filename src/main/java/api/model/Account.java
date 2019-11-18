@@ -24,7 +24,7 @@ public class Account {
     public void withdrawFunds(BigDecimal withdrawalAmount) {
         Function<BigDecimal, BigDecimal> withDrawFunction = parameter -> {
             if(this.balanceAmount.compareTo(withdrawalAmount) == -1) {
-                throw new NotEnoughBalanceException(String.format("Account with id: {0} does not have enough funds to withdraw : {1}", accountNumber, withdrawalAmount));
+                throw new NotEnoughBalanceException(String.format("Account with id: %s does not have enough funds to withdraw : %s", accountNumber, withdrawalAmount));
             }
             return this.balanceAmount.subtract(withdrawalAmount);
         };

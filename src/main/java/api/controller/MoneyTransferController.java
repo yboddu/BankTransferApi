@@ -4,6 +4,8 @@ import api.dto.MoneyTransferDTO;
 import api.exception.BadMoneyTransferDataException;
 import api.model.Account;
 import api.util.DtoUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -14,11 +16,14 @@ import static api.Application.accountService;
 import static api.Application.gson;
 
 public class MoneyTransferController {
+    private static Logger log = LoggerFactory.getLogger(MoneyTransferController.class);
+
     public static Route transferMoneyBetweenAccounts = (Request request, Response response) -> {
         MoneyTransferDTO moneyTransferDTO = gson.fromJson(request.body(), MoneyTransferDTO.class);
         validateMoneyTransferData(moneyTransferDTO);
 
         Account fromAccount = accountService.transferMoney(moneyTransferDTO);
+        log.info("Successfully transferred {} from Account: {} to Account: {}", moneyTransferDTO.getAmount(), fromAccount.getAccountNumber(), moneyTransferDTO.getToAccountNumber());
 
         return gson.toJson(DtoUtils.toAccountDto(fromAccount));
     };
