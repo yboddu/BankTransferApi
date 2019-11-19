@@ -2,9 +2,7 @@ package api;
 
 import api.dto.AccountDTO;
 import api.dto.MoneyTransferDTO;
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -23,7 +21,7 @@ public class MoneyTransferApiTest {
     private Gson gson = new Gson();
 
     @BeforeClass
-    public static void setup() throws InterruptedException {
+    public static void setup() {
         Application.main(new String[]{"4568"});
     }
 
