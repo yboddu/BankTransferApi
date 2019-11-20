@@ -13,7 +13,7 @@ public class Account {
     private BigDecimal balanceAmount;
     private String currencyCode;
 
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
+    private ReadWriteLock lock = new ReentrantReadWriteLock(true);
 
     public Account(Long accountNumber, BigDecimal initialBalance, String currencyCode) {
         this.accountNumber = accountNumber;
@@ -43,7 +43,7 @@ public class Account {
         try {
             this.balanceAmount = withdrawOrDepostFunction.apply(amount);
         } finally {
-            writeLock.unlock();
+          writeLock.unlock();
         }
     }
 

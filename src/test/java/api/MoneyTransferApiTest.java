@@ -7,10 +7,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import spark.Spark;
 
 import java.math.BigDecimal;
@@ -25,8 +22,7 @@ public class MoneyTransferApiTest {
         Application.main(new String[]{"4568"});
     }
 
-    @Test
-    public void testStringAccountNumberReturns500Error() throws UnirestException {
+    public void testStringAccountNumberReturns_Parsing400Error() throws UnirestException {
         Map<String, Object> requestBodyMap = new HashMap<>();
         requestBodyMap.put("fromAccountNumber", "10000011A");
         requestBodyMap.put("toAccountNumber", 10000022L);
@@ -42,7 +38,7 @@ public class MoneyTransferApiTest {
     }
 
     @Test
-    public void testInvalidAccountReturns404() throws UnirestException {
+    public void testInvalidAccountNumber_Returns404() throws UnirestException {
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                                                     MoneyTransferDTO.builder()
                                                             .fromAccountNumber(100000119999L)
@@ -55,7 +51,7 @@ public class MoneyTransferApiTest {
     }
 
     @Test
-    public void testMissingFromAccountNumberReturns400Error() throws UnirestException{
+    public void testMissingFromAccountNumberInPayload_Returns400Error() throws UnirestException{
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                                                     MoneyTransferDTO.builder()
                                                             .toAccountNumber(10000022L)
@@ -67,7 +63,7 @@ public class MoneyTransferApiTest {
     }
 
     @Test
-    public void testFromAccountSameAsToAccountReturns400Error() throws UnirestException{
+    public void testFromAccountNumberSameAsToAccountNumber_Returns400Error() throws UnirestException{
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                                                     MoneyTransferDTO.builder()
                                                         .fromAccountNumber(10000022L)
@@ -80,7 +76,7 @@ public class MoneyTransferApiTest {
     }
 
     @Test
-    public void testTransferringMoreMoneyThanAccountBalanceReturnsInsufficientFunds400Error() throws UnirestException{
+    public void testTransferringMoreMoneyThanAccountBalanceReturnsInsufficientFunds_Returns400Error() throws UnirestException{
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                 MoneyTransferDTO.builder()
                         .fromAccountNumber(10000011L)
@@ -93,7 +89,7 @@ public class MoneyTransferApiTest {
     }
 
     @Test
-    public void testTransferringMoneyLessThanZeroReturns400Error() throws UnirestException{
+    public void testTransferringMoneyLessThanZeroReturns_Returns400Error() throws UnirestException{
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                 MoneyTransferDTO.builder()
                         .fromAccountNumber(10000011L)

@@ -21,7 +21,7 @@ public class AccountRepository {
 
     //In memory data store
     private class InMemoryAccountDataStore {
-        private Map<Long, Account> accountsMap = new ConcurrentHashMap();
+        private Map<Long, Account> accountsMap = new ConcurrentHashMap<>();
 
         public InMemoryAccountDataStore() {
             BankAccountList.accountList

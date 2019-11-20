@@ -8,6 +8,9 @@ import api.repository.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class AccountService {
     private Logger log = LoggerFactory.getLogger(AccountService.class);
 
@@ -22,7 +25,6 @@ public class AccountService {
     }
 
     public Account transferMoney(MoneyTransferDTO moneyTransferDTO) throws AccountNotFoundException, NotEnoughBalanceException {
-
         Account fromAccount = accountRepository.getAccountByAccountNumber(moneyTransferDTO.getFromAccountNumber());
         Account toAccount = accountRepository.getAccountByAccountNumber(moneyTransferDTO.getToAccountNumber());
 
