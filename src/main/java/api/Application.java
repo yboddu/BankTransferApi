@@ -44,7 +44,7 @@ public class Application {
         //routes
         Gson gson = new Gson();
         get("/api/account/:accountNumber", MoneyTransferController.getAccount);
-        post("/api/account/transfer",  "application/json", MoneyTransferController.transferMoneyBetweenAccounts);
+        put("/api/account/transfer",  "application/json", MoneyTransferController.transferMoneyBetweenAccounts);
 
         //exception handling
         exception(AccountNotFoundException.class, (exception, request, response) -> {

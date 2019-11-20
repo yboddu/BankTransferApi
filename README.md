@@ -31,7 +31,7 @@ java -jar build/libs/banktransferapi-1.0-SNAPSHOT.jar 4567
 ## Api Model:
 Transfer Money:
 ```
-curl --request POST \
+curl --request PUT \
   --url http://localhost:4567/api/account/transfer \
   --header 'content-type: application/json' \
   --data '{
