@@ -119,7 +119,7 @@ public class MoneyTransferApiTest {
     }
 
     private HttpResponse<JsonNode> makeMoneyTransferApiCall(MoneyTransferDTO dto) throws UnirestException {
-        return Unirest.post("http://localhost:4568/api/account/transfer")
+        return Unirest.put("http://localhost:4568/api/account/transfer")
                 .header("accept", "application/json")
                 .body(gson.toJson(dto))
                 .asJson();
