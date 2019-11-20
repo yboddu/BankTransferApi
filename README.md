@@ -1,4 +1,3 @@
-# BankTransferApi 
 # banktransferapi
 Simple RESTful api to transfer funds between two different bank accounts. The application gets initialised with the following bank accounts:
 
