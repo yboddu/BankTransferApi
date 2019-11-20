@@ -72,8 +72,8 @@ public class AccountServiceTest {
 
            log.info("Bal 11 : " + account_11.getBalanceAmount() + ", Bal 22 : " + account_22.getBalanceAmount());
 
-           //Assert.assertEquals(BigDecimal.valueOf(1950), account_11.getBalanceAmount());
-           //Assert.assertEquals(BigDecimal.valueOf(1050), account_22.getBalanceAmount());
+           Assert.assertEquals(BigDecimal.valueOf(1950), account_11.getBalanceAmount());
+           Assert.assertEquals(BigDecimal.valueOf(1050), account_22.getBalanceAmount());
        } catch (AccountNotFoundException | NotEnoughBalanceException e) {
            log.error("Error occurred while transferring money: ", e);
        }

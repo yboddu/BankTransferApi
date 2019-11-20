@@ -105,17 +105,17 @@ public class MoneyTransferApiTest {
     public void testMoneyTransferIsSuccessful() throws UnirestException{
         HttpResponse<JsonNode> jsonResponse = makeMoneyTransferApiCall(
                 MoneyTransferDTO.builder()
-                        .fromAccountNumber(10000011L)
-                        .toAccountNumber(10000022L)
-                        .amount(new BigDecimal("100.00"))
+                        .fromAccountNumber(10000033L)
+                        .toAccountNumber(10000044L)
+                        .amount(new BigDecimal("500.00"))
                         .build());
 
-        AccountDTO fromAccountDto = gson.fromJson(Unirest.get("http://localhost:4568/api/account/10000011").asJson().getBody().toString(), AccountDTO.class);
-        AccountDTO toAccountDto = gson.fromJson(Unirest.get("http://localhost:4568/api/account/10000022").asJson().getBody().toString(), AccountDTO.class);
+        AccountDTO fromAccountDto = gson.fromJson(Unirest.get("http://localhost:4568/api/account/10000033").asJson().getBody().toString(), AccountDTO.class);
+        AccountDTO toAccountDto = gson.fromJson(Unirest.get("http://localhost:4568/api/account/10000044").asJson().getBody().toString(), AccountDTO.class);
 
         Assert.assertEquals(200, jsonResponse.getStatus());
-        Assert.assertEquals(new BigDecimal("900"), fromAccountDto.getBalanceAmount());
-        Assert.assertEquals(new BigDecimal("2100"), toAccountDto.getBalanceAmount());
+        Assert.assertEquals(new BigDecimal("2500"), fromAccountDto.getBalanceAmount());
+        Assert.assertEquals(new BigDecimal("4500"), toAccountDto.getBalanceAmount());
     }
 
     private HttpResponse<JsonNode> makeMoneyTransferApiCall(MoneyTransferDTO dto) throws UnirestException {
