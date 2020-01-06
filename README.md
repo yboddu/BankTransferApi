@@ -1,5 +1,5 @@
 # banktransferapi
-Simple RESTful api to transfer funds between two different bank accounts. The application gets initialised with the following bank accounts:
+Simple RESTful api to transfer funds between two different bank accounts. The application gets initialised with the following bank accounts and uses an in memory hashmap as the data repository:
 
 ```
 Account Id		Balance		Currency
