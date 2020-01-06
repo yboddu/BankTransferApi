@@ -12,7 +12,7 @@ Account Id		Balance		Currency
 
 ```
 
-Authentication, currency exchange etc are outside the scope of this Api implementation.
+Authentication, currency exchange, transaction handling etc are outside the scope of this Api implementation.
 
 
 ## Run
